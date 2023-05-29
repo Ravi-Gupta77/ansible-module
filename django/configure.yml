@@ -1,0 +1,27 @@
+---
+- hosts: EC2
+  become: true
+  vars:
+    python_pyenv_owner: "ubuntu"
+    home: "/home/ubuntu"
+    python_version: 3.10.7
+  # gather_facts:false
+  roles: 
+    - nginx
+    - handlers
+    - build tool
+   
+    - role: avanov.pyenv
+      vars:
+        pyenv_path: "{{ home }}/pyenv"
+        pyenv_owner: "{{ python_pyenv_owner }}"
+        pyenv_global: "{{ python_version }}"
+        pyenv_update_git_install: no
+        pyenv_enable_autocompletion: yes
+        pyenv_python_versions: "{{ python_version }}"
+        
+        pyenv_virtualenvs:
+          - venv_name: "venv"
+            py_version: "{{ python_version }}"
+    - files
+

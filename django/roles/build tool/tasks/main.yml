@@ -1,0 +1,14 @@
+- name: "create directory"
+  file:
+    path: /home/ubuntu/myproject
+    state: directory
+
+
+# - name: Install Django in a virtual environment
+#   shell: |
+#       source $HOME/.bashrc
+#       pyenv virtualenv "{{ pyenv_virtualenvs }}" "{{ venv_name }}"
+#       pyenv activate "{{ venv_name }}"
+#       pip install "django=={{ django_version }}"
+#   args:
+#     executable: /bin/bash
